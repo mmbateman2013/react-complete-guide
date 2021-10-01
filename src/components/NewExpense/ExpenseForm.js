@@ -42,6 +42,7 @@ const ExpenseForm = (props) => {
             type="text"
             name="new-expense-title"
             id="new-expense-title"
+            required
           />
         </div>
         <div className="new-expense__control">
@@ -54,6 +55,7 @@ const ExpenseForm = (props) => {
             id="new-expense-amount"
             min="0.01"
             step="0.01"
+            required
           />
         </div>
         <div className="new-expense__control">
@@ -66,11 +68,15 @@ const ExpenseForm = (props) => {
             id="new-expense-date"
             min="2019-01-01"
             step="2022-12-31"
+            required
           />
         </div>
       </div>
       <div className="new-expense__actions">
         <button type="submit">Add Expense</button>
+        <button type="button" onClick={props.onCancel}>
+          Cancel
+        </button>
       </div>
     </form>
   );
