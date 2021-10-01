@@ -5,20 +5,25 @@ import ExpensesFilter from "./ExpensesFilter";
 import "./Expenses.css";
 
 const Expenses = (props) => {
-  const [selectYear, setSelectYear] = useState("2020");
-
+  const [filterYear, setFilterYear] = useState("ALL");
   const receiveSelectYear = (year) => {
-    setSelectYear(year);
+    setFilterYear(year);
   };
+
+  const filteredExpenses = props.expenses.filter((e) => {
+    return (
+      filterYear === "ALL" || e.date.getFullYear().toString() === filterYear
+    );
+  });
 
   return (
     <div>
       <Card className="expenses">
         <ExpensesFilter
           onSelectYear={receiveSelectYear}
-          selectedYear={selectYear}
+          selectedYear={filterYear}
         />
-        {props.expenses.map((e) => (
+        {filteredExpenses.map((e) => (
           <ExpenseItem
             key={e.id}
             title={e.title}
