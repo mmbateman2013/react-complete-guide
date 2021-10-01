@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Card from "../UI/Card";
-import ExpenseItem from "./ExpenseItem";
 import ExpensesFilter from "./ExpensesFilter";
 import "./Expenses.css";
+import ExpensesList from "./ExpensesList";
 
 const Expenses = (props) => {
   const [filterYear, setFilterYear] = useState("ALL");
@@ -23,14 +23,7 @@ const Expenses = (props) => {
           onSelectYear={receiveSelectYear}
           selectedYear={filterYear}
         />
-        {filteredExpenses.map((e) => (
-          <ExpenseItem
-            key={e.id}
-            title={e.title}
-            amount={e.amount}
-            date={e.date}
-          />
-        ))}
+        <ExpensesList filteredExpenses={filteredExpenses} />
       </Card>
     </div>
   );
